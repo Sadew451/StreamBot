@@ -26,8 +26,8 @@ from youtubesearchpython import VideosSearch
 
 buttons = [
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/MaxRobot_updates"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/MaxRobotSupport"),
+                InlineKeyboardButton("Natsuki News 🙋", url="https://t.me/NATSUKI_UPDATES"),
+                InlineKeyboardButton("Support Group 👥", url="https://t.me/NATSUKISUPPORT_OFFICIAL"),
             ]
            
          ]
@@ -35,11 +35,11 @@ buttons = [
 @Client.on_inline_query()
 async def search(client, query):
     answers = []
-    if query.query == "@musiplayvc":
+    if query.query == "@Natsuki_Stream":
         answers.append(
             InlineQueryResultArticle(
                 title="Deploy Own Video Player Bot",
-                input_message_content=InputTextMessageContent(f"{REPLY_MESSAGE}\n\n<b>© Powered By : \n@musiplayvc | @musiplayvc 👑</b>", disable_web_page_preview=True),
+                input_message_content=InputTextMessageContent(f"{REPLY_MESSAGE}\n\n<b>© Powered By : \n@Natsuki_Stream | @Natsuki_Stream ⚡️</b>", disable_web_page_preview=True),
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
             )
