@@ -102,7 +102,7 @@ async def end_callbacc(client, CallbackQuery):
 @Client.on_message(filters.command(["stream", f"stream@{USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def stream(client, m: Message):
-    msg = await m.reply_text("🔄 `Processing ...`")
+    msg = await m.reply_text("🔄 **Processing ...**")
     chat_id = m.chat.id
     media = m.reply_to_message
     if not media and not ' ' in m.text:
@@ -116,7 +116,7 @@ async def stream(client, m: Message):
         regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
         match = re.match(regex, query)
         if match:
-            await msg.edit("🔄 `Starting YouTube Video Stream ...`")
+            await msg.edit("🔄 **Starting YouTube Video Stream ...**")
             try:
                 meta = ydl.extract_info(query, download=False)
                 formats = meta.get('formats', [meta])
@@ -134,7 +134,7 @@ async def stream(client, m: Message):
                 print(e)
 
         else:
-            await msg.edit("🔄 `Starting Live Video Stream ...`")
+            await msg.edit("🔄 **Starting Live Video Stream ...**")
             link = query
             thumb = "https://telegra.ph/file/47a7082ea57650ecccb76.jpg"
 
@@ -182,7 +182,7 @@ async def stream(client, m: Message):
             return await group_call.stop()
 
     elif media.video or media.document:
-        await msg.edit("🔄 `Downloading ...`")
+        await msg.edit("🔄 **Downloading ...**")
         if media.video.thumbs:
             lol = media.video.thumbs[0]
             lel = await client.download_media(lol['file_id'])
@@ -211,7 +211,7 @@ async def stream(client, m: Message):
             await msg.delete()
             await m.reply_photo(
                photo=thumb,
-               caption=f"▶️ **Started [Video Streaming](https://t.me/MaxRobotSupport) In {m.chat.title} !**",
+               caption=f"▶️ **Started [Video Streaming](https://t.me/NatsukiSupport_Official) In {m.chat.title} !**",
                reply_markup=InlineKeyboardMarkup(
                [
                    [
@@ -236,7 +236,7 @@ async def stream(client, m: Message):
 
     else:
         await msg.edit(
-            "💁🏻‍♂️ Do you want to search for a YouTube video?",
+            "Do you want to search for a YouTube video?",
             reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -289,7 +289,7 @@ async def resume(_, m: Message):
 @Client.on_message(filters.command(["endstream", f"endstream@{USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def endstream(client, m: Message):
-    msg = await m.reply_text("🔄 `Processing ...`")
+    msg = await m.reply_text("🔄 **Processing ...**")
     chat_id = m.chat.id
 
     if chat_id in AUDIO_CALL:
