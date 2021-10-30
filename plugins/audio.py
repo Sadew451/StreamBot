@@ -17,7 +17,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 @Client.on_message(filters.command(["play", f"play@{USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def play(client, m: Message):
-    msg = await m.reply_text("🔄 `Processing ...`")
+    msg = await m.reply_text("🔄 **Processing ...**")
     chat_id = m.chat.id
     media = m.reply_to_message
     if not media and not ' ' in m.text:
@@ -31,7 +31,7 @@ async def play(client, m: Message):
         regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
         match = re.match(regex, query)
         if match:
-            await msg.edit("🔄 `Starting YouTube Audio Stream ...`")
+            await msg.edit("🔄 **Starting YouTube Audio Stream ...**")
             try:
                 meta = ydl.extract_info(query, download=False)
                 formats = meta.get('formats', [meta])
@@ -43,7 +43,7 @@ async def play(client, m: Message):
                 print(e)
 
         else:
-            await msg.edit("🔄 `Starting Live Audio Stream ...`")
+            await msg.edit("🔄 **Starting Live Audio Stream ...**")
             link = query
 
         vid_call = VIDEO_CALL.get(chat_id)
@@ -88,7 +88,7 @@ async def play(client, m: Message):
             return await group_call.stop()
 
     elif media.audio or media.document:
-        await msg.edit("🔄 `Downloading ...`")
+        await msg.edit("🔄 **Downloading ...**")
         audio = await client.download_media(media)
 
         vid_call = VIDEO_CALL.get(chat_id)
@@ -109,7 +109,7 @@ async def play(client, m: Message):
             await group_call.start_audio(audio, repeat=False)
             AUDIO_CALL[chat_id] = group_call
             await msg.delete()
-            await m.reply_text(f"▶️ **Started [Audio Streaming](@MaxRobotSupport) In {m.chat.title} !**",
+            await m.reply_text(f"▶️ **Started [Audio Streaming](@NATSUKISUPPORT_OFFICIAL) In {m.chat.title} !**",
                reply_markup=InlineKeyboardMarkup(
                [
                    [
@@ -153,10 +153,10 @@ async def play(client, m: Message):
 @Client.on_message(filters.command(["restart", f"restart@{USERNAME}"]))
 @sudo_users_only
 async def restart(client, m: Message):
-    k = await m.reply_text("🔄 `Restarting ...`")
+    k = await m.reply_text("🔄 **Restarting ...**")
     await sleep(3)
     os.execl(sys.executable, sys.executable, *sys.argv)
     try:
-        await k.edit("✅ **Restarted Successfully! \nJoin @MaxRobotSupport For More!**")
+        await k.edit("✅ **Restarted Successfully! \nJoin @NATSUKISUPPORT_OFFICIAL For More! ✨**")
     except:
         pass
